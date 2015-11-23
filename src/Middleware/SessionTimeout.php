@@ -1,6 +1,6 @@
 <?php
 
-namespace Unicodeveloper\Http\Middleware;
+namespace Unicodeveloper\Session\Middleware;
 
 use Closure;
 use Illuminate\Session\Store;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Unicodeveloper\Mention\Test;
+namespace Unicodeveloper\Session\Test;
 
 class ExampleTest extends \PHPUnit_Framework_TestCase
 {

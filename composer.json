@@ -27,15 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Unicodeveloper\\Mention\\": "src"
-        },
-        "files": [
-            "src/helper.php"
-        ]
+            "Unicodeveloper\\Session\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "Unicodeveloper\\Mention\\Test\\": "tests"
+            "Unicodeveloper\\Session\\Test\\": "tests"
         }
     },
     "scripts": {
