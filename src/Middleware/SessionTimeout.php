@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Config;
 class SessionTimeout {
 
     /**
-     * [$session description]
-     * @var [type]
+     * Instance of Session Store
+     * @var session
      */
     protected $session;
 
@@ -22,15 +22,9 @@ class SessionTimeout {
     protected $timeout = 900;
 
     public function __construct(Store $session){
-        $this->sessiontimeout = $session;
-        $this->setConfigOptions();
-    }
-
-    private function setConfigOptions()
-    {
-        $this->lifetime    = Config::get('session.lifetime');
-        $this->labelInfo   = Config::get('timeout.labelInfo');
-        $this->redirectUrl = Config::get('timeout.redirectUrl');
+        $this->session        = $session;
+        $this->redirectUrl    = 'auth/login';
+        $this->sessionLabel   = 'warning';
     }
 
     /**
@@ -51,20 +45,39 @@ class SessionTimeout {
             $this->session->forget('lastActivityTime');
             Auth::logout();
 
-            return redirect($this->redirectUrl)->with([ $this->labelInfo => 'You have been inactive for '. $this->timeout/60 .' minutes ago.']);
+            return redirect($this->getRedirectUrl())->with([ $this->getSessionLabel() => 'You have been inactive for '. $this->timeout/60 .' minutes ago.']);
         }
 
         $this->session->put('lastActivityTime',time());
+
         return $next($request);
     }
 
     /**
-     *  Get timeout from laravel default's, if it's not set/empty, set timeout to 15 minutes
+     * Get timeout from laravel default's session lifetime, if it's not set/empty, set timeout to 15 minutes
      * @return int
      */
     private function getTimeOut()
     {
         return  ($this->lifetime) ?: $this->timeout;
+    }
+
+    /**
+     * Get redirect url from env file
+     * @return string
+     */
+    private function getRedirectUrl()
+    {
+        return  (env('SESSION_TIMEOUT_REDIRECTURL')) ?: $this->redirectUrl;
+    }
+
+    /**
+     * Get Session label from env file
+     * @return string
+     */
+    private function getSessionLabel()
+    {
+        return  (env('SESSION_LABEL')) ?: $this->sessionLabel;
     }
 
 }
