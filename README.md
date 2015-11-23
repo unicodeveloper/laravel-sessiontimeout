@@ -7,7 +7,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/unicodeveloper/laravel-sessiontimeout.svg?style=flat-square)](https://scrutinizer-ci.com/g/unicodeveloper/laravel-sessiontimeout)
 [![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/laravel-sessiontimeout.svg?style=flat-square)](https://packagist.org/packages/unicodeveloper/laravel-sessiontimeout)
 
-
+This package is a very simple but useful for handling session timeouts due to user inactivity on a website/application
 
 ## Installation
 
@@ -19,7 +19,7 @@ First, pull in the package through Composer.
 }
 ```
 
-Next you must add the \Unicodeveloper\SessionTimeOut\Middleware\FilterIfPjax-middleware to the kernel.
+Next you must add the `Unicodeveloper\Http\Middleware\SessionTimeout` to the kernel.
 
 ```php
 // app/Http/Kernel.php
@@ -27,7 +27,7 @@ Next you must add the \Unicodeveloper\SessionTimeOut\Middleware\FilterIfPjax-mid
 ...
 protected $middleware = [
     ...
-    \Unicodeveloper\SessionTimeout\Middleware\MakeSessionTimeout::class,
+    \Unicodeveloper\Http\Middleware\SessionTimeout::class,
 ];
 ```
 
