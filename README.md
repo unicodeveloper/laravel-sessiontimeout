@@ -1,4 +1,4 @@
-# A laravel session timeout middleware suited for Laravel 5
+# A laravel session timeout middleware
 
 [![Latest Stable Version](https://poser.pugx.org/unicodeveloper/laravel-sessiontimeout/v/stable.svg)](https://packagist.org/packages/unicodeveloper/laravel-sessiontimeout)
 ![](https://img.shields.io/badge/unicodeveloper-approved-brightgreen.svg)
